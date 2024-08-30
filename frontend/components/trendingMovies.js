@@ -14,9 +14,9 @@ export default function TrendingMovies({trendingData}){
     }
 
     return ( 
-        <View>
+        <View className = 'mb-7 mt-7'>
 
-            <Text className = 'text-white text-xl mx-4 mb-5'>TRENDING MOVIES</Text>
+            <Text className = 'text-amber-500 text-xl mx-4 mb-5'>INVOICE MANAGER</Text>
 
             <Carousel
                 data={trendingData}
@@ -24,7 +24,7 @@ export default function TrendingMovies({trendingData}){
                 firstItem = {1}
                 inactiveSlideOpacity = {0.60}
                 sliderWidth = {width}
-                itemWidth = {width*0.62} 
+                itemWidth = {width*0.60} 
                 slideStyle = {{display:'flex',alignItems:'center'}}
                 />
 

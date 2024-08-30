@@ -1,9 +1,10 @@
-import { View,Text, TouchableOpacity, ScrollView, TouchableWithoutFeedback, Image, Dimensions } from "react-native";
+import { View,Text, TouchableWithoutFeedback, Dimensions , Image } from "react-native";
 import React from "react";
+import Carousel from "react-native-snap-carousel";
 import { useNavigation } from "@react-navigation/native";
-import { img185 } from "../api/moviedb";
+import AffiliatedCard from "./affiliatedCard";
 
-const data = [
+const data= [
     {
         id: 1, 
         title: "AMD",
@@ -56,34 +57,31 @@ const data = [
     }
 ]
 
-export default function MovieList({title}){
+var {width , height} = Dimensions.get('window');  //to get ht and wt of the current device window to use them in carousel
 
-    var {width,height} = Dimensions.get('window');    
+export default function AffiliatedVendor({title}){
+
+    const navigation = useNavigation();
 
     return ( 
-        <View className = 'mb-8 space-y-4'>
+        <View className = 'mb-7'>
 
-            <View className = 'flex-row items-center justify-between mx-4'>
-                <Text className= 'text-white text-lg'>{title}</Text>                
-            </View>
+            <Text className = 'text-amber-500 text-xl mx-4 mb-5'>AFFILIATED VENDORS</Text>
+
+            <Carousel
+                data={data}
+                renderItem = {({item}) => <AffiliatedCard item={item} />}  
+                firstItem = {1}
+                inactiveSlideOpacity = {0.60}
+                sliderWidth = {width}
+                itemWidth = {width*0.4} 
+                slideStyle = {{display:'flex',alignItems:'center'}}
+                />
+
             
-            <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{paddingHorizontal:15}}>
-                {data.map((item,id) => {
-                    return (
-                        <TouchableWithoutFeedback key={id}>     
-                            <View className='space-y-1 mr-4' >
-                                <Image source={{uri: item.img}} style= {{width:width*0.33 , height: height*0.22}} className= 'rounde-3xl'/>
-                                <Text className= 'text-neutral-300 ml-1'>
-                                    {/*{movieName.length>14 ? movieName.slice(0,14)+'...' : movieName}*/}
-                                    {item.title.length>14 ? item.title.slice(0,14)+'...' : item.title}
-                                </Text>
-                            </View>
-                            
-                        </TouchableWithoutFeedback>
-                    )
-                })}
-            </ScrollView>
-            
+
         </View>
     )
 }
+
+

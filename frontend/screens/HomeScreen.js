@@ -4,7 +4,8 @@ import { Platform, ScrollView, Text, TouchableOpacity, View } from 'react-native
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { Bars3CenterLeftIcon, MagnifyingGlassIcon } from 'react-native-heroicons/outline'
 import TrendingMovies from '../components/trendingMovies';
-import MovieList from '../components/movieList';
+import AffiliatedInstitute from '../components/affiliatedInstitute';
+import AffiliatedVendor from '../components/affiliatedVendor';
 import { useNavigation } from '@react-navigation/native';
 import Loading from '../components/loading';
 import { fetchTrendingMovies, fetchUpcomingMovies, fetchTopRatedMovies } from '../api/moviedb';
@@ -59,7 +60,7 @@ export default function HomeScreen(){
 
             <View className = 'flex-row items-center justify-between mx-4'>
                 <Bars3CenterLeftIcon size = '30' strokeWidth={3} color = 'white' />
-                <Text className = 'text-white text-3xl font-bold'><Text className = 'text-amber-500'>M</Text>ovies</Text>
+                <Text className = 'text-white text-3xl font-bold'><Text className = 'text-amber-500'>I</Text>nvoix</Text>
                 <TouchableOpacity onPress={()=>navigation.navigate('Search')}><MagnifyingGlassIcon size='30' strokeWidth = {2} color = 'white' /></TouchableOpacity>
             </View>
 
@@ -72,8 +73,8 @@ export default function HomeScreen(){
             <ScrollView showsVerticalScrollIndicator = {false} contentContainerStyle = {{paddingbutton: 10}}>
 
                 {trendingData.length> 0 && <TrendingMovies trendingData={trendingData} />}
-                <MovieList title = 'Upcoming' data = {upcomingData} />
-                <MovieList title = 'Top-Rated' data = {topRatedData} />
+                <AffiliatedInstitute />
+                <AffiliatedVendor />
     
             </ScrollView>               
             )
