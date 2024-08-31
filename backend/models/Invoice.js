@@ -1,4 +1,4 @@
-const mongoose= require("mongoose"); //cuz schema bnana
+const mongoose= require("mongoose"); 
 
 const InvoiceSchema = new mongoose.Schema({
     username:{
@@ -31,6 +31,5 @@ const InvoiceSchema = new mongoose.Schema({
     },
 
 },{timestamps:true})
-//timestamps to automatically store the time when credentials filled by the user
 
 module.exports= mongoose.model("Invoice",InvoiceSchema);

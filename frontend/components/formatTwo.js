@@ -2,7 +2,7 @@ import React from 'react';
 import { ScrollView, Text, View } from 'react-native';
 
 export default function FormatTwo({ invoiceData }) {
-    // Perform your calculations
+    //calculations
     const subtotal = invoiceData.items.reduce((sum, item) => sum + item.amount, 0);
     const taxAmount = (subtotal * invoiceData.taxPercentage) / 100;
     const total = subtotal + taxAmount;

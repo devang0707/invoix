@@ -7,7 +7,6 @@ import AffiliatedInstitute from '../components/affiliatedInstitute'
 import AffiliatedVendor from '../components/affiliatedVendor' 
 import { useNavigation } from '@react-navigation/native' 
 import Loading from '../components/loading' 
-import { fetchTrendingMovies, fetchUpcomingMovies, fetchTopRatedMovies } from '../api/moviedb' 
 
 import AsyncStorage from '@react-native-async-storage/async-storage' 
 

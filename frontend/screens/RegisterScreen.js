@@ -4,7 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import { ChevronLeftIcon } from "react-native-heroicons/outline";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import axios from 'axios';  // Import axios
+import axios from 'axios';  
 
 export default function RegisterScreen({ route }) {
 

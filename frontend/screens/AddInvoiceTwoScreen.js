@@ -13,7 +13,6 @@ const topMargin = ios ? '' : 'mt-3';
 export default function AllInvoiceScreen() {
     const navigation = useNavigation();
 
-    // State declarations
     const [rows, setRows] = useState([{ description: '', quantity: 0, unitPrice: 0, amount: 0 }]);
     const [tax, setTax] = useState(0);
     const [subtotal, setSubtotal] = useState(0);
@@ -32,7 +31,6 @@ export default function AllInvoiceScreen() {
     const handleRowChange = (index, field, value) => {
         const newRows = [...rows];
         
-        // Ensure numeric inputs are valid numbers
         const numericValue = parseFloat(value);
         newRows[index][field] = isNaN(numericValue) ? 0 : numericValue;
 

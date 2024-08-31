@@ -14,7 +14,6 @@ import AllInvoiceScreen from '../screens/AllInvoiceScreen';
 import AllInvoiceTwoScreen from '../screens/AllInvoiceTwoScreen';
 
 
-//screen options for removing header from top
 
 export default function Navigation(){
     return(

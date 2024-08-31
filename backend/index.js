@@ -1,4 +1,4 @@
-const dotenv = require("dotenv"); //to not to expose user password of mongodb
+const dotenv = require("dotenv"); 
 const cors = require("cors");
 const express = require("express");
 const mongoose = require("mongoose");
@@ -11,7 +11,7 @@ dotenv.config();
 
 
 const app = express();
-app.use (express.json()); //it's a middleware cuz .use() method 
+app.use (express.json());  
 
 
 mongoose.connect(process.env.MONGO_URL,{useNewUrlParser:true, useUnifiedTopology:true}).then(()=>{console.log("mongoose connected");}).catch((err)=>{console.log(err)});

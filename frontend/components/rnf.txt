@@ -7,7 +7,7 @@ var {width , height} = Dimensions.get('window');
 
 var {width , height} = Dimensions.get('window');
 
-export default function TrendingMovies(){
+export default function Component(){
     return ( 
         <View>
             <Text></Text>

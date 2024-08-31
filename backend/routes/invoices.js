@@ -1,13 +1,12 @@
-const router = require("express").Router(); //cuz route bnana
-const Pin = require ("../models/Invoice"); //imported schema 
+const router = require("express").Router(); 
+const Pin = require ("../models/Invoice"); 
 
-//pin creation ; Parameter 2 is the function which gonna take action in page name of Parameter 1 
-router.post("/",async(req,res)=>{ //expands to /pins
+router.post("/",async(req,res)=>{ 
     
     const newPin =  new Pin(req.body); //REQ
     try {  
         const savedPin = await newPin.save(); //SAVE
-        res.status(200).json(savedPin);  //to send JSON data in the response body
+        res.status(200).json(savedPin);  
     }
     catch{ 
         res.status(500).json(err); 
@@ -19,7 +18,7 @@ router.get("/",async(req,res)=>{
 
     try{  
         const pins =await Pin.find(); //Find All
-        res.status(200).json(pins); //SEND
+        res.status(200).json(pins); 
     }
     catch(err){
         res.status(500).json(err);
@@ -28,7 +27,7 @@ router.get("/",async(req,res)=>{
 
 //delete pin
 router.delete('/:id',async(req,res)=>{
-    const id = req.params.id     //IMP
+    const id = req.params.id    
     try{
         const pins = await Pin.findByIdAndRemove(id) 
         res.status(200).json(pins)
