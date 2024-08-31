@@ -2,8 +2,8 @@ import React from 'react';
 import { ScrollView, Text, View } from 'react-native';
 
 export default function FormatOne({ invoiceData }) {
-    //calculations
-    const subtotal = invoiceData.items.reduce((sum, item) => sum + item.amount, 0);
+    // Calculations
+    const subtotal = invoiceData.items.reduce((sum, item) => sum + (item.quantity * item.unitPrice), 0);
     const taxAmount = (subtotal * invoiceData.taxPercentage) / 100;
     const total = subtotal + taxAmount;
 
@@ -58,7 +58,7 @@ export default function FormatOne({ invoiceData }) {
                         <Text className="border border-gray-300 p-2 w-[20vw] text-center text-white">{item.description}</Text>
                         <Text className="border border-gray-300 p-2 w-[20vw] text-center text-white">{item.quantity}</Text>
                         <Text className="border border-gray-300 p-2 w-[20vw] text-center text-white">${item.unitPrice.toFixed(2)}</Text>
-                        <Text className="border border-gray-300 p-2 w-[20vw] text-center text-white">${item.amount.toFixed(2)}</Text>
+                        <Text className="border border-gray-300 p-2 w-[20vw] text-center text-white">${(item.quantity * item.unitPrice).toFixed(2)}</Text>
                     </View>
                 ))}
 
