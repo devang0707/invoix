@@ -9,10 +9,20 @@ const data= [
     {
         id: 1, 
         title: "AddInvoice",
-        img: "https://static.vecteezy.com/system/resources/previews/023/465/796/original/add-button-dark-mode-glyph-ui-icon-increase-volume-menu-command-user-interface-design-white-silhouette-symbol-on-black-space-solid-pictogram-for-web-mobile-isolated-illustration-vector.jpg"
+        img: "https://i.postimg.cc/T300b597/format1.png"
     },
     {
         id: 2, 
+        title: "AllInvoice",
+        img: "https://cdn.pixabay.com/photo/2018/05/08/21/29/paypal-3384015_1280.png"
+    },
+    {
+        id: 3, 
+        title: "AllInvoice",
+        img: "https://i.postimg.cc/L8mKRf5N/format2.png"
+    },
+    {
+        id: 4, 
         title: "AllInvoice",
         img: "https://cdn.pixabay.com/photo/2018/05/08/21/29/paypal-3384015_1280.png"
     },
