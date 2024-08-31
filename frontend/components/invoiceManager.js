@@ -8,23 +8,27 @@ import InvoiceCard from "./invoiceCard";
 const data= [
     {
         id: 1, 
-        title: "AddInvoice",
-        img: "https://i.postimg.cc/T300b597/format1.png"
+        screen: "AddInvoice",
+        img: "https://images.unsplash.com/photo-1455390582262-044cdead277a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80",
+        title: "Create Format #1"
     },
     {
         id: 2, 
-        title: "AllInvoice",
-        img: "https://cdn.pixabay.com/photo/2018/05/08/21/29/paypal-3384015_1280.png"
+        screen: "AllInvoice",
+        img: "https://images.pexels.com/photos/1629212/pexels-photo-1629212.jpeg?cs=srgb&dl=pexels-minan1398-1629212.jpg&fm=jpg",
+        title: "All Invoices #1"
     },
     {
         id: 3, 
-        title: "AllInvoice",
-        img: "https://i.postimg.cc/L8mKRf5N/format2.png"
+        screen: "AddInvoiceTwo",
+        img: "https://i.postimg.cc/Gp8Kj8Fn/t1.png",
+        title: "Create Format #2"
     },
     {
         id: 4, 
-        title: "AllInvoice",
-        img: "https://cdn.pixabay.com/photo/2018/05/08/21/29/paypal-3384015_1280.png"
+        screen: "AllInvoiceTwo",
+        img: "https://images.squarespace-cdn.com/content/v1/5f1ddd617db10668dbabf02d/a04befcc-3f7d-47f0-a607-9913772a4843/sticky-notes",
+        title: "All Invoices #2"
     },
 ]
 

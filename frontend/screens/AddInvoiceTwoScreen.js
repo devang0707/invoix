@@ -10,7 +10,7 @@ var { width, height } = Dimensions.get('window');
 const ios = Platform.OS == 'ios';
 const topMargin = ios ? '' : 'mt-3';
 
-export default function AddInvoiceScreen() {
+export default function AllInvoiceScreen() {
     const navigation = useNavigation();
 
     // State declarations
@@ -101,6 +101,13 @@ export default function AddInvoiceScreen() {
                     <TextInput placeholder="City, State, ZIP" className="w-[80vw] my-2 p-2 border border-gray-300 rounded bg-white" />
                 </View>
 
+                <View>
+                    <Text className="text-lg text-amber-500 font-semibold">Bill From:</Text>
+                    <TextInput placeholder="Name" className="w-[80vw] my-2 p-2 border border-gray-300 rounded bg-white" />
+                    <TextInput placeholder="Street Address" className="w-[80vw] my-2 p-2 border border-gray-300 rounded bg-white" />
+                    <TextInput placeholder="City, State, ZIP" className="w-[80vw] my-2 p-2 border border-gray-300 rounded bg-white" />
+                </View>
+
                 {/* Table */}
                 <View className="w-[90vw] mt-[50px] border-collapse">
                     {/* Header Row */}
@@ -137,7 +144,7 @@ export default function AddInvoiceScreen() {
                             />
                             <Text className="border border-gray-300 p-2 w-[20vw] text-center bg-white">{row.amount.toFixed(2)}</Text>
                             <TouchableOpacity onPress={() => handleDeleteRow(index)} className='w-[10vw] bg-red-500 p-3'>
-                                <Text className="text-white text-center text-black font-bold">X</Text>
+                                <Text className="text-white text-center font-bold">X</Text>
                             </TouchableOpacity>
                         </View>
                     ))}

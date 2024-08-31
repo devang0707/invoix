@@ -1,5 +1,5 @@
 const router = require("express").Router(); //cuz route bnana
-const Pin = require ("../models/Pin"); //imported schema 
+const Pin = require ("../models/Invoice"); //imported schema 
 
 //pin creation ; Parameter 2 is the function which gonna take action in page name of Parameter 1 
 router.post("/",async(req,res)=>{ //expands to /pins

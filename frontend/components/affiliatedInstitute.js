@@ -64,7 +64,7 @@ export default function AffiliatedInstitute(){
     const navigation = useNavigation();
 
     return ( 
-        <View className = 'mb-7'>
+        <View className = 'mb-7 mt-3'>
 
             <Text className = 'text-amber-500 text-xl mx-4 mb-5'>AFFILIATED INSTITUTES</Text>
 

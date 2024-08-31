@@ -14,12 +14,19 @@ export default function InvoiceCard({item}){
 
 
     return ( 
-        <TouchableWithoutFeedback onPress = {()=>navigation.navigate(`${item.title}`)}>   
-            <Image
-                source={{uri: item.img}}
-                style = {{width: width*0.6 , height: height*0.4}}
-                className = 'rounded-3xl'
-            />
-        </TouchableWithoutFeedback>
+        <View className = 'flex'>
+            
+            <TouchableWithoutFeedback onPress = {()=>navigation.navigate(`${item.screen}`)}>   
+                <Image
+                    source={{uri: item.img}}
+                    style = {{width: width*0.6 , height: height*0.4}}
+                    className = 'rounded-3xl'
+                />
+                
+            </TouchableWithoutFeedback>
+
+            <Text className = 'text-center text-amber-500'>{item.title}</Text>
+
+        </View>
     )
 }

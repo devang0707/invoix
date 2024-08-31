@@ -9,7 +9,9 @@ import HomeScreen from '../screens/HomeScreen';
 import LoginScreen from '../screens/LoginScreen';
 import RegisterScreen from '../screens/RegisterScreen';
 import AddInvoiceScreen from '../screens/AddInvoiceScreen';
+import AddInvoiceTwoScreen from '../screens/AddInvoiceTwoScreen';
 import AllInvoiceScreen from '../screens/AllInvoiceScreen';
+import AllInvoiceTwoScreen from '../screens/AllInvoiceTwoScreen';
 
 
 //screen options for removing header from top
@@ -22,7 +24,9 @@ export default function Navigation(){
             <Stack.Screen  name="Login"  component={LoginScreen} />
             <Stack.Screen  name="Register"  component={RegisterScreen} />
             <Stack.Screen  name="AddInvoice"  component={AddInvoiceScreen} />
+            <Stack.Screen  name="AddInvoiceTwo"  component={AddInvoiceTwoScreen} />
             <Stack.Screen  name="AllInvoice"  component={AllInvoiceScreen} />
+            <Stack.Screen  name="AllInvoiceTwo"  component={AllInvoiceTwoScreen} />
         </Stack.Navigator>
     </NavigationContainer>
     )

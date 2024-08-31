@@ -1,6 +1,6 @@
 const mongoose= require("mongoose"); //cuz schema bnana
 
-const PinSchema = new mongoose.Schema({
+const InvoiceSchema = new mongoose.Schema({
     username:{
         type: String,
         require: true,
@@ -33,4 +33,4 @@ const PinSchema = new mongoose.Schema({
 },{timestamps:true})
 //timestamps to automatically store the time when credentials filled by the user
 
-module.exports= mongoose.model("Pin",PinSchema);
+module.exports= mongoose.model("Invoice",InvoiceSchema);
