@@ -12,6 +12,7 @@ import AddInvoiceScreen from '../screens/AddInvoiceScreen';
 import AddInvoiceTwoScreen from '../screens/AddInvoiceTwoScreen';
 import AllInvoiceScreen from '../screens/AllInvoiceScreen';
 import AllInvoiceTwoScreen from '../screens/AllInvoiceTwoScreen';
+import UserCredScreen from '../screens/UserCredScreen';
 
 
 
@@ -26,6 +27,7 @@ export default function Navigation(){
             <Stack.Screen  name="AddInvoiceTwo"  component={AddInvoiceTwoScreen} />
             <Stack.Screen  name="AllInvoice"  component={AllInvoiceScreen} />
             <Stack.Screen  name="AllInvoiceTwo"  component={AllInvoiceTwoScreen} />
+            <Stack.Screen  name="UserCred"  component={UserCredScreen} />
         </Stack.Navigator>
     </NavigationContainer>
     )

@@ -53,9 +53,9 @@ export default function HomeScreen(){
                     currentUser ? (<TouchableOpacity onPress={logout}><Text className = 'text-red-500'>Logout</Text></TouchableOpacity>)
                     : (<TouchableOpacity onPress={()=>navigation.navigate('Login', {setCurrentUser: setCurrentUser})}><Text className = 'text-white'>Sign In</Text></TouchableOpacity>)
                 }
-                <Text className = 'text-white text-3xl font-bold'><Text className = 'text-amber-500'>I</Text>nvoix</Text>
+                <Text className = 'text-white text-3xl font-bold'><Text className = 'text-amber-500'>In</Text>voix</Text>
                 {
-                    currentUser ? (<View><Text>                </Text></View>) 
+                    currentUser ? (<View><TouchableOpacity onPress = {() => navigation.navigate('UserCred')}><Text className = 'text-amber-600'>Account</Text></TouchableOpacity></View>) 
                     : (<TouchableOpacity onPress={()=>navigation.navigate('Register', {setCurrentUser: setCurrentUser})}><Text className = 'text-white'>Register</Text></TouchableOpacity>)
                 }
             </View>

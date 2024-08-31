@@ -24,7 +24,7 @@ export default function InvoiceCard({item}){
                 
             </TouchableWithoutFeedback>
 
-            <Text className = 'text-center text-amber-500'>{item.title}</Text>
+            <Text className = 'text-center text-amber-200'>{item.title}</Text>
 
         </View>
     )
