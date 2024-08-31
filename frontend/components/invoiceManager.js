@@ -2,7 +2,8 @@ import { View,Text, TouchableWithoutFeedback, Dimensions , Image } from "react-n
 import React from "react";
 import Carousel from "react-native-snap-carousel";
 import { useNavigation } from "@react-navigation/native";
-import AffiliatedCard from "./affiliatedCard";
+import InvoiceCard from "./invoiceCard";
+
 
 const data= [
     {
@@ -60,22 +61,25 @@ const data= [
 
 var {width , height} = Dimensions.get('window');  
 
-export default function AffiliatedVendor({title}){
+export default function InvoiceManager({trendingData}){
 
     const navigation = useNavigation();
+    const handleClick = (item) => {
+        navigation.navigate('Movie',item)   
+    }
 
     return ( 
-        <View className = 'mb-7'>
+        <View className = 'mb-7 mt-7'>
 
-            <Text className = 'text-amber-500 text-xl mx-4 mb-5'>AFFILIATED VENDORS</Text>
+            <Text className = 'text-amber-500 text-xl mx-4 mb-5'>INVOICE MANAGER</Text>
 
             <Carousel
                 data={data}
-                renderItem = {({item}) => <AffiliatedCard item={item} />}  
+                renderItem = {({item}) => <InvoiceCard item={item} handleClick={handleClick} />}  
                 firstItem = {1}
                 inactiveSlideOpacity = {0.60}
                 sliderWidth = {width}
-                itemWidth = {width*0.4} 
+                itemWidth = {width*0.60} 
                 slideStyle = {{display:'flex',alignItems:'center'}}
                 />
 

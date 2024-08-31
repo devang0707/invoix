@@ -1,84 +1,78 @@
-import { StatusBar } from 'expo-status-bar';
+import { StatusBar } from 'expo-status-bar' 
 import React, { Component, useEffect, useState } from 'react'
 import { Platform, ScrollView, Text, TouchableOpacity, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { Bars3CenterLeftIcon, MagnifyingGlassIcon } from 'react-native-heroicons/outline'
-import TrendingMovies from '../components/trendingMovies';
-import AffiliatedInstitute from '../components/affiliatedInstitute';
-import AffiliatedVendor from '../components/affiliatedVendor';
-import { useNavigation } from '@react-navigation/native';
-import Loading from '../components/loading';
-import { fetchTrendingMovies, fetchUpcomingMovies, fetchTopRatedMovies } from '../api/moviedb';
+import InvoiceManager from '../components/invoiceManager' 
+import AffiliatedInstitute from '../components/affiliatedInstitute' 
+import AffiliatedVendor from '../components/affiliatedVendor' 
+import { useNavigation } from '@react-navigation/native' 
+import Loading from '../components/loading' 
+import { fetchTrendingMovies, fetchUpcomingMovies, fetchTopRatedMovies } from '../api/moviedb' 
+
+import AsyncStorage from '@react-native-async-storage/async-storage' 
 
 
-const ios = Platform.OS == 'ios';
+
+const ios = Platform.OS == 'ios' 
 
 export default function HomeScreen(){
 
-    const [trendingData , SetTrendingData] = useState([]);
-    const [upcomingData , SetUpcomingData] = useState([]);
-    const [topRatedData , SetTopRatedData] = useState([]);
 
-    const [loading , SetLoading] = useState(true);
+
+    const [currentUser, setCurrentUser] = useState(null) 
+
+    useEffect(() => {
+        const loadUser = async () => {
+            const storedUser = await AsyncStorage.getItem('user') 
+            if (storedUser) {
+                setCurrentUser(storedUser) 
+            }
+        } 
+        loadUser() 
+    }, []) 
+
+    const logout = async () => {
+        await AsyncStorage.removeItem('user') 
+        setCurrentUser(null) 
+    } 
  
-    const navigation = useNavigation();
+    const navigation = useNavigation() 
 
 
-    useEffect(()=>{
-        getTrendingMovies();
-        getUpcomingMovies();
-        getTopRatedMovies();
-    },[])
 
-    const getTrendingMovies = async() =>{
-        const data = await fetchTrendingMovies();
-        //console.log('trending movies data :' , data);
-        if(data && data.results) SetTrendingData(data.results);
-        SetLoading(false);
-    }
-    const getUpcomingMovies = async() =>{
-        const data = await fetchUpcomingMovies();
-        //console.log('upcoming movies data :' , data);
-        if(data && data.results) SetUpcomingData(data.results);
-        SetLoading(false);
-    }
-    const getTopRatedMovies = async() =>{
-        const data = await fetchTopRatedMovies();
-        //console.log('top-rated movies data :' , data);
-        if(data && data.results) SetTopRatedData(data.results);
-        SetLoading(false);
-    }
 
 
     return(
     <View className = 'flex-1 bg-neutral-800'>   
 
-        {/* Navbar not inside ScrollView so fixed and not scrolling down */}
         <SafeAreaView className = {ios ? '-mb-2' : 'mb-3'}>
 
             <StatusBar style = 'light'/>
 
             <View className = 'flex-row items-center justify-between mx-4'>
-                <Bars3CenterLeftIcon size = '30' strokeWidth={3} color = 'white' />
+                {
+                    currentUser ? (<TouchableOpacity onPress={logout}><Text className = 'text-red-500'>Logout</Text></TouchableOpacity>)
+                    : (<TouchableOpacity onPress={()=>navigation.navigate('Login', {setCurrentUser: setCurrentUser})}><Text className = 'text-white'>Sign In</Text></TouchableOpacity>)
+                }
                 <Text className = 'text-white text-3xl font-bold'><Text className = 'text-amber-500'>I</Text>nvoix</Text>
-                <TouchableOpacity onPress={()=>navigation.navigate('Search')}><MagnifyingGlassIcon size='30' strokeWidth = {2} color = 'white' /></TouchableOpacity>
+                {
+                    currentUser ? (<View><Text>                </Text></View>) 
+                    : (<TouchableOpacity onPress={()=>navigation.navigate('Register', {setCurrentUser: setCurrentUser})}><Text className = 'text-white'>Register</Text></TouchableOpacity>)
+                }
             </View>
 
         </SafeAreaView>
 
-        {
-            loading ? (
-                <Loading/>
-            ) : (
-            <ScrollView showsVerticalScrollIndicator = {false} contentContainerStyle = {{paddingbutton: 10}}>
 
-                {trendingData.length> 0 && <TrendingMovies trendingData={trendingData} />}
-                <AffiliatedInstitute />
-                <AffiliatedVendor />
+
+        <ScrollView showsVerticalScrollIndicator = {false} contentContainerStyle = {{paddingbutton: 10}}>
+
+            <InvoiceManager />
+            <AffiliatedInstitute />
+            <AffiliatedVendor />
     
-            </ScrollView>               
-            )
-        }
+        </ScrollView>               
+  
 
 
     </View>     

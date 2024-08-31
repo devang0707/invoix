@@ -1,4 +1,4 @@
-const mongoose= require("mongoose");  //cuz schema bnana 
+const mongoose= require("mongoose"); 
 
 const UserSchema = new mongoose.Schema({
     username:{
@@ -23,4 +23,4 @@ const UserSchema = new mongoose.Schema({
 
 },{timestamps:true})
 
-module.exports= mongoose.model("User",UserSchema);  //named the model as "User"
+module.exports= mongoose.model("User",UserSchema);  

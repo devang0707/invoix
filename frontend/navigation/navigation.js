@@ -6,9 +6,9 @@ const Stack = createNativeStackNavigator();
 import React, { Component } from 'react'
 import { Text, View } from 'react-native'
 import HomeScreen from '../screens/HomeScreen';
-import MovieScreen from '../screens/MovieScreen';
-import PersonScreen from '../screens/PersonScreen'
-import SearchScreen from '../screens/SearchScreen';
+import LoginScreen from '../screens/LoginScreen';
+import RegisterScreen from '../screens/RegisterScreen';
+
 
 //screen options for removing header from top
 
@@ -17,9 +17,8 @@ export default function Navigation(){
     <NavigationContainer>
         <Stack.Navigator  screenOptions={{headerShown:false}}>   
             <Stack.Screen  name="Home"  component={HomeScreen} />
-            <Stack.Screen  name="Movie"  component={MovieScreen} />
-            <Stack.Screen  name="Person"  component={PersonScreen} />
-            <Stack.Screen  name="Search"  component={SearchScreen} />
+            <Stack.Screen  name="Login"  component={LoginScreen} />
+            <Stack.Screen  name="Register"  component={RegisterScreen} />
         </Stack.Navigator>
     </NavigationContainer>
     )

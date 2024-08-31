@@ -57,7 +57,7 @@ const data= [
     }
 ]
 
-var {width , height} = Dimensions.get('window');  //to get ht and wt of the current device window to use them in carousel
+var {width , height} = Dimensions.get('window');  
 
 export default function AffiliatedInstitute(){
 
