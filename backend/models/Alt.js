@@ -18,6 +18,9 @@ const ItemSchema = new mongoose.Schema({
 });
 
 const AltSchema = new mongoose.Schema({
+    currentUser: {
+        type: String
+    },
     invoiceNumber: {
         type: String,
         required: true,

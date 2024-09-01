@@ -7,12 +7,10 @@ import axios from 'axios';
 export default function FormatOne({ invoiceData }) {
     const [currentInvoiceData, setCurrentInvoiceData] = useState(invoiceData);
 
-    // Update currentInvoiceData when invoiceData changes
     useEffect(() => {
         setCurrentInvoiceData(invoiceData);
     }, [invoiceData]);
 
-    // Calculations (only if currentInvoiceData is not null)
     const subtotal = currentInvoiceData?.items?.reduce((sum, item) => sum + (item.quantity * item.unitPrice), 0) || 0;
     const taxAmount = (subtotal * (currentInvoiceData?.taxPercentage || 0)) / 100;
     const total = subtotal + taxAmount;

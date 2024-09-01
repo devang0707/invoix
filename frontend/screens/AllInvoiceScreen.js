@@ -6,13 +6,30 @@ import { ChevronLeftIcon } from "react-native-heroicons/outline";
 import axios from 'axios';
 import FormatOne from '../components/formatOne';
 
+import AsyncStorage from '@react-native-async-storage/async-storage' 
+
+
 const { width, height } = Dimensions.get('window');
 const ios = Platform.OS === 'ios';
 const topMargin = ios ? '' : 'mt-3';
 
 export default function AllInvoiceScreen() {
+
+
+    const [currentUser, setCurrentUser] = useState(null) 
+    const [invoices, setInvoices] = useState([]); 
     const navigation = useNavigation();
-    const [invoices, setInvoices] = useState([]);  
+
+    useEffect(() => {
+        const loadUser = async () => {
+            const storedUser = await AsyncStorage.getItem('user') 
+            if (storedUser) {
+                setCurrentUser(storedUser) 
+            }
+        } 
+        loadUser() 
+    }, [])
+
 
     useEffect(() => {
         const fetchInvoices = async () => {
@@ -27,6 +44,10 @@ export default function AllInvoiceScreen() {
         fetchInvoices();
     }, []);  
 
+
+    const filteredInvoices = invoices.filter(invoice => invoice.currentUser === currentUser);
+
+
     return (
         <ScrollView contentContainerStyle={{ paddingBottom: 20 }} className='flex-1 bg-neutral-900'>
             <SafeAreaView className='w-full mt-5'>
@@ -37,8 +58,8 @@ export default function AllInvoiceScreen() {
                 </View>
             </SafeAreaView>
 
-            {invoices.length > 0 ? (
-                invoices.map((invoice, index) => (
+            {filteredInvoices.length > 0 ? (
+                filteredInvoices.map((invoice, index) => (
                     <FormatOne key={index} invoiceData={invoice} />
                 ))
             ) : (

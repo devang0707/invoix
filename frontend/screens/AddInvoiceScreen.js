@@ -1,15 +1,32 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ScrollView, Text, TextInput, TouchableOpacity, View, Dimensions, Platform } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import { ChevronLeftIcon } from "react-native-heroicons/outline";
+
+import AsyncStorage from '@react-native-async-storage/async-storage' 
+
 
 
 var { width, height } = Dimensions.get('window');
 const ios = Platform.OS === 'ios';
 
 export default function AddInvoiceScreen() {
+
+    const [currentUser, setCurrentUser] = useState(null) 
+
+    useEffect(() => {
+        const loadUser = async () => {
+            const storedUser = await AsyncStorage.getItem('user') 
+            if (storedUser) {
+                setCurrentUser(storedUser) 
+            }
+        } 
+        loadUser() 
+    }, [])
+
+
     const navigation = useNavigation();
 
     const [rows, setRows] = useState([{ description: '', quantity: 0, unitPrice: 0, amount: 0 }]);
@@ -76,6 +93,7 @@ export default function AddInvoiceScreen() {
 
     const submit = async () => {
         const invoice = {
+            currentUser: currentUser,
             invoiceNumber: invoiceNumber,
             setDate: setDate,
             dueDate: dueDate,
