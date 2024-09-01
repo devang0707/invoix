@@ -191,7 +191,7 @@ export default function AddInvoiceScreen() {
                         </TouchableOpacity>
                     </View>
 
-                    <View className="flex-row w-[90vw]">
+                    <View className="flex-row mt-[20px] w-[90vw]">
                         <Text className="border border-gray-300 p-2 flex-1 font-semibold text-white">Subtotal</Text>
                         <Text className="border border-gray-300 p-2 w-28 text-right text-white">{subtotal.toFixed(2)}</Text>
                     </View>

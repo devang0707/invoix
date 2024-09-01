@@ -45,7 +45,8 @@ export default function LoginScreen({ route }){
             setSuccess(true)           
         } 
         catch (err) {
-            setError(true) 
+            setError(true)
+            setTimeout(() => {setError(false)}, 1000) 
         }
     } 
 

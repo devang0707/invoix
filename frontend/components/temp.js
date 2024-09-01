@@ -1,40 +1,28 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { ScrollView, Text, View, TouchableOpacity, Alert } from 'react-native';
 import * as FileSystem from 'expo-file-system';
 import * as Sharing from 'expo-sharing';
-import axios from 'axios';
 
 export default function FormatTwo({ invoiceData }) {
-    const [currentInvoiceData, setCurrentInvoiceData] = useState(invoiceData);
-
-    // Update currentInvoiceData when invoiceData changes
-    useEffect(() => {
-        setCurrentInvoiceData(invoiceData);
-    }, [invoiceData]);
-
-    // Calculations (only if currentInvoiceData is not null)
-    const subtotal = currentInvoiceData?.items?.reduce((sum, item) => sum + (item.quantity * item.unitPrice), 0) || 0;
-    const taxAmount = (subtotal * (currentInvoiceData?.taxPercentage || 0)) / 100;
+    // Calculations
+    const subtotal = invoiceData.items.reduce((sum, item) => sum + (item.quantity * item.unitPrice), 0);
+    const taxAmount = (subtotal * invoiceData.taxPercentage) / 100;
     const total = subtotal + taxAmount;
 
     const createAndShareFile = async () => {
-        if (!currentInvoiceData) {
-            Alert.alert('Error', 'No invoice data available to create a file.');
-            return;
-        }
-
+        // Create the content of the file
         const fileContent = `
         INVOICE
 
-        Invoice #: ${currentInvoiceData.invoiceNumber}
-        Set Date: ${currentInvoiceData.setDate}
-        Due Date: ${currentInvoiceData.dueDate}
-        Phone: ${currentInvoiceData.phone}
+        Invoice #: ${invoiceData.invoiceNumber}
+        Set Date: ${invoiceData.setDate}
+        Due Date: ${invoiceData.dueDate}
+        Phone: ${invoiceData.phone}
 
         Bill To:
-        ${currentInvoiceData.billTo.name}
-        ${currentInvoiceData.billTo.address}
-        ${currentInvoiceData.billTo.cityStateZip}
+        ${invoiceData.billTo.name}
+        ${invoiceData.billTo.address}
+        ${invoiceData.billTo.cityStateZip}
 
         Bill From:
         ${invoiceData.billFrom.nameTwo}
@@ -42,7 +30,7 @@ export default function FormatTwo({ invoiceData }) {
         ${invoiceData.billFrom.cityStateZipTwo}
 
         Items:
-        ${currentInvoiceData.items.map(item => `
+        ${invoiceData.items.map(item => `
         Description: ${item.description}
         Quantity: ${item.quantity}
         Unit Price: ${item.unitPrice.toFixed(2)}
@@ -50,16 +38,22 @@ export default function FormatTwo({ invoiceData }) {
         `).join('\n')}
 
         Subtotal: ${subtotal.toFixed(2)}
-        Tax (${currentInvoiceData.taxPercentage}%): ${taxAmount.toFixed(2)}
+        Tax (${invoiceData.taxPercentage}%): ${taxAmount.toFixed(2)}
         Total: ${total.toFixed(2)}
         `;
 
-        const fileUri = FileSystem.documentDirectory + `invoice_${currentInvoiceData.invoiceNumber}.txt`;
+        // File path
+        const fileUri = FileSystem.documentDirectory + `invoice_${invoiceData.invoiceNumber}.txt`;
 
         try {
+            // Write the file
             await FileSystem.writeAsStringAsync(fileUri, fileContent, { encoding: FileSystem.EncodingType.UTF8 });
+            console.log('File written to:', fileUri);
+
+            // Share the file
             if (await Sharing.isAvailableAsync()) {
                 await Sharing.shareAsync(fileUri);
+                console.log('File shared successfully!');
             } else {
                 Alert.alert('Sharing not available', 'Sharing is not available on this device.');
             }
@@ -68,20 +62,6 @@ export default function FormatTwo({ invoiceData }) {
             Alert.alert('Error', 'There was an issue creating or sharing the file.');
         }
     };
-
-    const handleDeleteInvoice = async (id) => {
-        try {
-            await axios.delete(`http://192.168.1.3:8394/api/alts/${id}`);
-            setCurrentInvoiceData(null);
-        } catch (err) {
-            console.log(err);
-            Alert.alert('Error', 'There was an issue deleting the invoice.');
-        }
-    };
-
-    if (currentInvoiceData === null) {
-        return <Text className="text-white text-center">[This invoice was deleted]</Text>;
-    }
 
     return (
         <ScrollView className="max-w-3xl text-white mx-auto my-8 border border-gray-300 p-5">
@@ -94,28 +74,28 @@ export default function FormatTwo({ invoiceData }) {
             <View className="mb-6">
                 <View className="my-2 flex-row items-center">
                     <Text className="font-semibold text-white w-32">Invoice #:</Text>
-                    <Text className="text-white">{currentInvoiceData.invoiceNumber}</Text>
+                    <Text className="text-white">{invoiceData.invoiceNumber}</Text>
                 </View>
                 <View className="my-2 flex-row items-center">
                     <Text className="font-semibold text-white w-32">Set Date:</Text>
-                    <Text className="text-white">{currentInvoiceData.setDate}</Text>
+                    <Text className="text-white">{invoiceData.setDate}</Text>
                 </View>
                 <View className="my-2 flex-row items-center">
                     <Text className="font-semibold text-white w-32">Due Date:</Text>
-                    <Text className="text-white">{currentInvoiceData.dueDate}</Text>
+                    <Text className="text-white">{invoiceData.dueDate}</Text>
                 </View>
                 <View className="my-2 flex-row items-center">
                     <Text className="font-semibold text-white w-32">Phone:</Text>
-                    <Text className="text-white">{currentInvoiceData.phone}</Text>
+                    <Text className="text-white">{invoiceData.phone}</Text>
                 </View>
             </View>
 
             {/* Bill To */}
             <View className="mb-6">
                 <Text className="text-lg text-amber-500 font-semibold mb-2">Bill To:</Text>
-                <Text className="text-white mb-1">{currentInvoiceData.billTo.name}</Text>
-                <Text className="text-white mb-1">{currentInvoiceData.billTo.address}</Text>
-                <Text className="text-white">{currentInvoiceData.billTo.cityStateZip}</Text>
+                <Text className="text-white mb-1">{invoiceData.billTo.name}</Text>
+                <Text className="text-white mb-1">{invoiceData.billTo.address}</Text>
+                <Text className="text-white">{invoiceData.billTo.cityStateZip}</Text>
             </View>
             {/* Bill From */}
             <View className="mb-6">
@@ -136,7 +116,7 @@ export default function FormatTwo({ invoiceData }) {
                 </View>
 
                 {/* Table Rows */}
-                {currentInvoiceData.items.map((item, index) => (
+                {invoiceData.items.map((item, index) => (
                     <View key={index} className="flex-row">
                         <Text className="border border-gray-300 p-2 flex-1 text-center text-white">{item.description}</Text>
                         <Text className="border border-gray-300 p-2 flex-1 text-center text-white">{item.quantity}</Text>
@@ -152,7 +132,7 @@ export default function FormatTwo({ invoiceData }) {
                 </View>
                 {/* Tax */}
                 <View className="flex-row">
-                    <Text className="border border-gray-300 p-2 flex-1 font-semibold text-white pr-4">Tax ({currentInvoiceData.taxPercentage}%)</Text>
+                    <Text className="border border-gray-300 p-2 flex-1 font-semibold text-white pr-4">Tax ({invoiceData.taxPercentage}%)</Text>
                     <Text className="border border-gray-300 p-2 w-32 text-right text-white">{taxAmount.toFixed(2)}</Text>
                 </View>
                 {/* Total */}
@@ -167,7 +147,7 @@ export default function FormatTwo({ invoiceData }) {
                     </TouchableOpacity>
                 </View>
                 <View className="w-[90vw]">
-                    <TouchableOpacity onPress={() => handleDeleteInvoice(currentInvoiceData._id)} className='bg-red-500 p-3 rounded'>
+                    <TouchableOpacity className='bg-red-500 p-3 rounded'>
                         <Text className="text-black font-bold text-center">Delete</Text>
                     </TouchableOpacity>
                 </View>
