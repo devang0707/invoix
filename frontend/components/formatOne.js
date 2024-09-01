@@ -57,25 +57,25 @@ export default function FormatOne({ invoiceData }) {
                     <View key={index} className="flex-row">
                         <Text className="border border-gray-300 p-2 w-[20vw] text-center text-white">{item.description}</Text>
                         <Text className="border border-gray-300 p-2 w-[20vw] text-center text-white">{item.quantity}</Text>
-                        <Text className="border border-gray-300 p-2 w-[20vw] text-center text-white">${item.unitPrice.toFixed(2)}</Text>
-                        <Text className="border border-gray-300 p-2 w-[20vw] text-center text-white">${(item.quantity * item.unitPrice).toFixed(2)}</Text>
+                        <Text className="border border-gray-300 p-2 w-[20vw] text-center text-white"> {item.unitPrice.toFixed(2)}</Text>
+                        <Text className="border border-gray-300 p-2 w-[20vw] text-center text-white"> {(item.quantity * item.unitPrice).toFixed(2)}</Text>
                     </View>
                 ))}
 
                 {/* Subtotal */}
                 <View className="flex-row mt-4">
                     <Text className="border border-gray-300 p-2 flex-1 font-semibold text-white pr-4">Subtotal</Text>
-                    <Text className="border border-gray-300 p-2 w-32 text-right text-white">${subtotal.toFixed(2)}</Text>
+                    <Text className="border border-gray-300 p-2 w-32 text-right text-white"> {subtotal.toFixed(2)}</Text>
                 </View>
                 {/* Tax */}
                 <View className="flex-row">
                     <Text className="border border-gray-300 p-2 flex-1 font-semibold text-white pr-4">Tax ({invoiceData.taxPercentage}%)</Text>
-                    <Text className="border border-gray-300 p-2 w-32 text-right text-white">${taxAmount.toFixed(2)}</Text>
+                    <Text className="border border-gray-300 p-2 w-32 text-right text-white"> {taxAmount.toFixed(2)}</Text>
                 </View>
                 {/* Total */}
                 <View className="flex-row">
                     <Text className="border border-gray-300 p-2 flex-1 font-semibold text-white pr-4">Total</Text>
-                    <Text className="border border-gray-300 p-2 w-32 text-right text-white">${total.toFixed(2)}</Text>
+                    <Text className="border border-gray-300 p-2 w-32 text-right text-white"> {total.toFixed(2)}</Text>
                 </View>
             </View>
         </ScrollView>
