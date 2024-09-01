@@ -6,6 +6,7 @@ const mongoose = require("mongoose");
 //import routes
 const userRoute = require("./routes/users");               
 const invoiceRoute = require("./routes/invoices");
+const altRoute = require("./routes/alts");
 
 dotenv.config();
 
@@ -20,6 +21,7 @@ app.use(cors());
 //api endpoints creation
 app.use ("/api/users",userRoute);
 app.use ("/api/invoices",invoiceRoute);
+app.use ("/api/alts",altRoute);
 
 app.listen (8394, ()=>{
     console.log ("server running");

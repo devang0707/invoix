@@ -17,7 +17,7 @@ const ItemSchema = new mongoose.Schema({
     }
 });
 
-const InvoiceSchema = new mongoose.Schema({
+const AltSchema = new mongoose.Schema({
     invoiceNumber: {
         type: String,
         required: true,
@@ -48,6 +48,20 @@ const InvoiceSchema = new mongoose.Schema({
             required: true,
         }
     },
+    billFrom: {
+        nameTwo: {
+            type: String,
+            required: true,
+        },
+        addressTwo: {
+            type: String,
+            required: true,
+        },
+        cityStateZipTwo: {
+            type: String,
+            required: true,
+        }
+    },
     items: [ItemSchema],  
     taxPercentage: {
         type: Number,
@@ -57,4 +71,4 @@ const InvoiceSchema = new mongoose.Schema({
 
 }, { timestamps: true });
 
-module.exports = mongoose.model("Invoice", InvoiceSchema);
+module.exports = mongoose.model("Alt", AltSchema);
