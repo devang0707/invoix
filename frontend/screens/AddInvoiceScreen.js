@@ -212,7 +212,7 @@ export default function AddInvoiceScreen() {
 
                     <View className="my-4 w-[90vw]">
                         <TouchableOpacity onPress={submit} className='bg-emerald-500 p-3 rounded'>
-                            <Text className="text-black font-bold text-center font-bold">Submit</Text>
+                            <Text className="text-black font-bold text-center font-bold">Save</Text>
                         </TouchableOpacity>
                     </View>
 
