@@ -23,6 +23,13 @@ app.use ("/api/users",userRoute);
 app.use ("/api/invoices",invoiceRoute);
 app.use ("/api/alts",altRoute);
 
+app.get("/", (req,res)=>{
+    res.status(200).send({
+        "success": true,
+        "msg": "Node Server Running"
+    })
+})
+
 app.listen (8394, ()=>{
     console.log ("server running");
 }) 
