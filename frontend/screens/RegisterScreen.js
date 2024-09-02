@@ -29,13 +29,12 @@ export default function RegisterScreen({ route }) {
 
         try {
             const res = await axios.post('http://192.168.1.3:8394/api/users/register', newUser);
-            console.log(res);
             setError(false);
             setSuccess(true);
             await AsyncStorage.setItem('user', res.data.username);
             setCurrentUser(res.data.username);
         } catch (err) {
-            console.error("Error registering user:", err.response ? err.response.data : err.message);
+            console.log("Error registering user:", err.response ? err.response.data : err.message);
             setError(true);
         }
     };

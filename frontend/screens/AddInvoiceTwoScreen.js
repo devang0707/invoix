@@ -119,7 +119,6 @@ export default function AllInvoiceScreen() {
     
         try {
             const res = await axios.post('http://192.168.1.3:8394/api/alts', invoice);
-            console.log(res);
             setError(false)  
             setSuccess(true) 
             setTimeout(() => setSuccess(false), 1500);

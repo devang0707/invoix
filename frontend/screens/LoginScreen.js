@@ -38,7 +38,6 @@ export default function LoginScreen({ route }){
 
         try {
             const res = await axios.post('http://192.168.1.3:8394/api/users/login', user) 
-            console.log(res) 
             AsyncStorage.setItem('user', res.data.username) 
             setCurrentUser(res.data.username) 
             setError(false)  

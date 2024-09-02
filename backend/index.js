@@ -23,6 +23,13 @@ app.use ("/api/users",userRoute);
 app.use ("/api/invoices",invoiceRoute);
 app.use ("/api/alts",altRoute);
 
+app.get("/", (req,res)=>{
+    res.status(200).send({
+        "success": true,
+        "msg": "Node Server Running"
+    })
+})
+
 
 const PORT = process.env.PORT || 8394;
 app.listen (PORT, ()=>{

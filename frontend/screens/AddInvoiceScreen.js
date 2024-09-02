@@ -113,7 +113,6 @@ export default function AddInvoiceScreen() {
     
         try {
             const res = await axios.post('http://192.168.1.3:8394/api/invoices', invoice);
-            console.log(res);
             setError(false)  
             setSuccess(true) 
             setTimeout(() => setSuccess(false), 1500);

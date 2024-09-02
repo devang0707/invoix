@@ -37,7 +37,7 @@ export default function AllInvoiceTwoScreen() {
                 const res = await axios.get('http://192.168.1.3:8394/api/alts');
                 setInvoices(res.data);  
             } catch (err) {
-                console.error("Error fetching invoices:", err);
+                console.log("Error fetching invoices:", err);
             }
         };
 

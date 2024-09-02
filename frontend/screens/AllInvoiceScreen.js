@@ -37,7 +37,7 @@ export default function AllInvoiceScreen() {
                 const res = await axios.get('http://192.168.1.3:8394/api/invoices');
                 setInvoices(res.data);  
             } catch (err) {
-                console.error("Error fetching invoices:", err);
+                console.log("Error fetching invoices:", err);
             }
         };
 
