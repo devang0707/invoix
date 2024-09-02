@@ -23,6 +23,8 @@ app.use ("/api/users",userRoute);
 app.use ("/api/invoices",invoiceRoute);
 app.use ("/api/alts",altRoute);
 
-app.listen (8394, ()=>{
+
+const PORT = process.env.PORT || 8394;
+app.listen (PORT, ()=>{
     console.log ("server running");
 }) 
